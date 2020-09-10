@@ -7,17 +7,23 @@ class Command(BaseCommand):
     help = _('Creates Roles for the API.')
 
     def handle(self, *args, **options):
-        trader_group, _ = Group.objects.get_or_create(
+        groups = Group.objects.all()
+        groups.delete()
+
+        trader_group = Group.objects.create(
             name='Trader'
         )
 
-        approver_group, _ = Group.objects.get_or_create(
+        approver_group = Group.objects.create(
             name='Approver'
         )
 
-        admin_group, _ = Group.objects.get_or_create(
+        admin_group = Group.objects.create(
             name='Admin'
         )
+
+        users = User.objects.all()
+        users.delete()
 
         trader_user = User.objects.create_user(username='jtrader', password='foreside2020')
         trader_user.first_name = 'Joe'

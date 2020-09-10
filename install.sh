@@ -11,10 +11,10 @@ pip install -r requirements.txt
 # Migrate the database
 python manage.py migrate
 
-python manage.py collectstatic --noinput
-
 # Create the Default Roles: Trader, Approver, Admin
 python manage.py create_roles
+# Create test Orders
+python manage.py create_orders
 
 # Run the local webserver
 ./manage.py runserver 8000
