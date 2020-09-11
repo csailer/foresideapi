@@ -1,0 +1,758 @@
+{
+	"info": {
+		"_postman_id": "3bf8b30d-c0c9-4370-95ed-8e5686f28722",
+		"name": "Forside API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Orders - Trader Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jtrader",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Orders - Admin Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jadmin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order By Id - Trader Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jtrader",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/4/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"4",
+						""
+					]
+				},
+				"description": "Run Get Orders to find a valid Order Id to retreive."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Orders - Approver Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "japprover",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order By Id - Approver Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "japprover",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/4/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"4",
+						""
+					]
+				},
+				"description": "Run Get Orders to find a valid Order Id to retreive."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order By Id - Admin Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jadmin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/4/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"4",
+						""
+					]
+				},
+				"description": "Run Get Orders to find a valid Order Id to retreive."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order - Trader Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jtrader",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Order12\",\n  \"client\": \"Client12\",\n  \"symbol\": \"TSLA\",\n  \"quantity\": 1000,\n  \"price\": \"454\",\n  \"transaction_type\": \"create\",\n  \"payment_method\": \"cash\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order - Approver Role [Should Fail - No permissions]",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "japprover",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Order14\",\n  \"client\": \"Client15\",\n  \"symbol\": \"TSLA\",\n  \"quantity\": 1000,\n  \"price\": \"454\",\n  \"transaction_type\": \"create\",\n  \"payment_method\": \"cash\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				},
+				"description": "This is an Approver trying to create an Order. Approvers cannot create orders."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order - Admin Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jadmin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Order16\",\n  \"client\": \"Client17\",\n  \"symbol\": \"TSLA\",\n  \"quantity\": 1000,\n  \"price\": \"454\",\n  \"transaction_type\": \"create\",\n  \"payment_method\": \"cash\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Order - Trader Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jtrader",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"quantity\": 210,\n  \"price\": \"200\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/7/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"7",
+						""
+					]
+				},
+				"description": "Trader Role can edit an order"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Order - Admin Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jadmin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"quantity\": 1000,\n  \"price\": \"130\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/4/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"4",
+						""
+					]
+				},
+				"description": "Trader Role can edit an order"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Order - Approver Role [Should Fail - No Permission]",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "japprover",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"quantity\": 10,\n  \"price\": \"130\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orders/4/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"4",
+						""
+					]
+				},
+				"description": "Trader Role can edit an order"
+			},
+			"response": []
+		},
+		{
+			"name": "Change Status - Trader Role [Should Fail - No Permission] Copy",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jtrader",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\": 4,\n  \"status\": \"approve\",\n  \"reason\": \"wanted trade\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orderstatus/4/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orderstatus",
+						"4",
+						""
+					]
+				},
+				"description": "Trader Role can edit an order"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Status - Approver Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "japprover",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\": 3,\n  \"status\": \"approved\",\n  \"reason\": \"submitted correctly\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orderstatus/3/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orderstatus",
+						"3",
+						""
+					]
+				},
+				"description": "This will update an existing Order's status"
+			},
+			"response": []
+		},
+		{
+			"name": "New Status - Approver Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "japprover",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\": 4,\n  \"status\": \"approved\",\n  \"reason\": \"submitted correctly\"\n  \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orderstatus/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orderstatus",
+						""
+					]
+				},
+				"description": "Trader Role can edit an order"
+			},
+			"response": []
+		},
+		{
+			"name": "New Status - Admin Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jadmin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\": 4,\n  \"status\": \"rejected\",\n  \"reason\": \"no funds\"\n  \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orderstatus/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orderstatus",
+						""
+					]
+				},
+				"description": "Use Get Orders to get a valid Order Id for the json in the Body of this request."
+			},
+			"response": []
+		},
+		{
+			"name": "New Status - Trader Role [Should Fail - Permissions]",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jtrader",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "foreside2020",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\": 4,\n  \"status\": \"rejected\",\n  \"reason\": \"no funds\"\n  \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/orderstatus/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orderstatus",
+						""
+					]
+				},
+				"description": "Use Get Orders to get a valid Order Id for the json in the Body of this request.\n\nA Trader Role cannot create a new status."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

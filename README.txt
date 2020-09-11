@@ -1,12 +1,15 @@
 THIS PROJECT WAS BUILT AND TESTED ON MAC OS. IT WAS NOT TESTED ON Windows.
 
+INSTALL
+=================================
 Unzip the provided project zip file.
 From a terminal, CD into the directory where the project zip file was extracted.
 
 Create a Virtual Environment for the API (see https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html for details)
     (You can also use another Virtual Environment package but this project was tested with Virtualenvwrapper)
 To install the virtualenvwrapper and create a virtual environment, from the terminal
-pip install virtualenvwrapper
+
+ -- $ pip install virtualenvwrapper --
 
  -- $ mkvirtualenv -p $(which python3.7) foreside --
 
@@ -24,7 +27,7 @@ This will do the basic set up for the project and start a webserver running at h
 
 Open http://localhost:8000 in your browser.
 
-You will land on the Swagger page for the API. This is where you can interact with the API.
+You will land on the Swagger page for the API.
 
 Start by expanding GET /orders/
     Click on the "Try it Out" button
@@ -33,7 +36,17 @@ Start by expanding GET /orders/
     These orders were created in the install.sh ran earlier.
 
 
-The design, roughly
+POSTMAN
+========================================================
+From the working directory, import Forside API.postman_collection.json. This is a Postman Collection
+that provides a test harness for each scenario described in the requirements document.
+
+If you don't have Postman, you can use the Swagger Page to interact with the API.
+
+
+
+DESIGN
+=======================================================
 
 The project is a single Django Project containing the Models, the REST API, and an Admin UI for editing Users and Groups (Roles).
 Obviously, a real project would separate these functional areas by concern.
@@ -65,8 +78,11 @@ The main folder structure:
                derive from an AuditableModel.
 
 
-The API has Roles that limit functionality based on a user's access level.
-The install.sh created 3 users:
+ROLES
+========================================================
+The API has Roles that limit functionality based on the role to which the user is assigned.
+
+The install.sh created 3 users, the appropriate roles and assigned each user to a role:
 
 Joe Trader    - Trader Role. He can Place a New Order, Edit an existing Order. He can edit ANY existing order.
                 a needed improvement in a subsequent iteration of development may be to limit Joe Trade to only
@@ -77,30 +93,25 @@ Joe Admin      - Admin Role. He is a superuser who can create/edit orders and ap
 
 Deleting orders is not allowed through the API for any Role.
 
-Role Based Permissions
+Role Based Permissions:
 
-The Roles, Trade, Approver, and Admin are Django Groups. The groups (Roles) are not configured with permissions. Instead,
-the Roles are controlled with Polices. This is the cleanest and most simple way I know of, probably not the only, to enforce
-access while retaining flexiblity to define knew Roles and expand or contract a particular Role's access. The policies work
-by mapping roles to methods.
+The Roles: Trade, Approver, and Admin are Django Groups. The groups (Roles) are not configured with permissions. Rather than Django Permissions,
+the Roles are controlled with Polices. This controlls proper access while retaining flexiblity to define knew Roles and expand or contract a Role's access.
+The policies work by mapping roles to methods exposed by the API.
 
  Order Policy
 
-        {
+       {
             "action": ["list", "retrieve"],
             "principal": "*",
             "effect": "allow"
         },
         {
-            "action": ["create"],
-            "principal": ["group:Trader", "group:Admin"],
-            "effect": "allow"
-        },
-        {
-            "action": ["update"],
+            "action": ["create", "update", "partial_update"],
             "principal": ["group:Trader", "group:Admin"],
             "effect": "allow"
         }
+
 
   In this policy, everyone can list all and retrieve individual Orders. Only Traders and Admins can create orders.
   And only Traders and Admins may edit orders.
@@ -113,7 +124,7 @@ by mapping roles to methods.
             "effect": "allow"
         },
         {
-            "action": ["create", "update"],
+            "action": ["create", "update", "partial_update"],
             "principal": ["group:Approver", "group:Admin"],
             "effect": "allow"
         }
@@ -121,4 +132,9 @@ by mapping roles to methods.
     In this Policy, everyone can list all and retrieve individual Orders Status. Only Approvers and Admin
     may create or update an Order Status. (The Trader creates an Order Status as part of creating a new Order.
     this is done automatically as part of the logic to create an Order.)
+
+    These polices are encapsulated in the foreside.api.orders.policy file. Each Policy is then attached to a ViewSet
+    in the API (foreside.api.orders.views):
+
+    permission_classes = (policy.OrderAccessPolicy,)
 
