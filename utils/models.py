@@ -2,7 +2,6 @@ import logging
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import AnonymousUser, Group, Permission
-from dry_rest_permissions.generics import authenticated_users
 from django.utils import timezone
 from cuser.middleware import CuserMiddleware
 
@@ -34,25 +33,6 @@ class AuditableModel(models.Model):
                                    db_index=True,
                                    verbose_name=_("Modified By"))
 
-
-
-    @staticmethod
-    @authenticated_users
-    def has_read_permission(request):
-        return True
-
-    def has_object_read_permission(self, request):
-        return True
-
-    @staticmethod
-    @authenticated_users
-    def has_write_permission(request):
-        return True
-
-    @staticmethod
-    @authenticated_users
-    def has_create_permission(request):
-        return True
 
     class Meta:
         abstract = True

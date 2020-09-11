@@ -26,8 +26,9 @@ class Order(AuditableModel):
         (KIND, _('Kind'))
     )
 
+
+    name = models.CharField(verbose_name=_('Name'), max_length=150, null=True, blank=False)
     # TODO: Future Sprint: Move clients to their own model/table and update the client field to a ForeignKey to the client model
-    name= models.CharField(verbose_name=_('Name'), max_length=150, null=True, blank=False)
     client = models.CharField(verbose_name=_('Client'), max_length=150, null=True, blank=False)
     symbol = models.CharField(verbose_name=_('Stock Symbol'), max_length=50, null=True, blank=False)
     quantity = models.IntegerField(verbose_name=_('Quantity'), null=True, blank=False)

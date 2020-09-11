@@ -9,12 +9,7 @@ class OrderAccessPolicy(AccessPolicy):
             "effect": "allow"
         },
         {
-            "action": ["create"],
-            "principal": ["group:Trader", "group:Admin"],
-            "effect": "allow"
-        },
-        {
-            "action": ["update"],
+            "action": ["create", "update", "partial_update"],
             "principal": ["group:Trader", "group:Admin"],
             "effect": "allow"
         }
@@ -29,7 +24,7 @@ class OrderStatusAccessPolicy(AccessPolicy):
             "effect": "allow"
         },
         {
-            "action": ["create", "update"],
+            "action": ["create", "update", "partial_update"],
             "principal": ["group:Approver", "group:Admin"],
             "effect": "allow"
         }

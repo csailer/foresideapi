@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from orders import models
+from cuser.middleware import CuserMiddleware
 from . import serializers
 from . import policy
 
@@ -9,6 +10,7 @@ class OrderViewset(viewsets.ModelViewSet):
     serializer_class = serializers.OrderSerializer
     permission_classes = (policy.OrderAccessPolicy,)
     http_method_names = ['get', 'post', 'patch']
+
 
 
 class OrderStatusViewset(viewsets.ModelViewSet):
